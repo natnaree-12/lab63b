@@ -15,6 +15,7 @@
 4.Commuter
 
 ## ศึกษาข้อมูลเบื้องต้น
+* https://www.youtube.com/watch?v=NLIUsWLEpmg&ab_channel=TANI-IOT
 
 ## วิธีการทำการทดลอง
 1.ต่อสาย USB เข้า Serial Port Compuuter 
@@ -34,7 +35,7 @@
     * พิมพ์ cd 01_Serial Monitor 
     * พิมพ์ vi src/main.cpp
     
-    ![image](https://user-images.githubusercontent.com/80879788/112310657-6aa53000-8cd7-11eb-8d70-da7305c4f50d.png)
+![image](https://user-images.githubusercontent.com/80879788/112310657-6aa53000-8cd7-11eb-8d70-da7305c4f50d.png)
     
 4.แสดงโปรแกรมทดสอบ 15 บรรทัด มี 2 ส่วน คือ ส่วนของ setup กับ loop
 
@@ -65,6 +66,9 @@
 ![image](https://user-images.githubusercontent.com/80879788/112316743-f9b54680-8cdd-11eb-88cb-b0add704c60c.png)
 
 ## อภิปรายผลการทดลอง
+
+ในการทดลองนี้ใช้ microcontroller ESP01 ซึ่งมีทั้ง CPU และเสาสำหรับรับ wife ใช้ Serial Port Compuuter เป็นตัวป้อนโปรแกรมใส่ microcontroller ESP01 ในการทดลองนี้จะเลือกตัวอย่างโปรแกรม 01_Serial Monitor เพื่อนำมา run โดยในตัวอย่างโปรแกรมนี้มี 15 บรรทัด
+มี 2 ส่วน หรือ 2 ฟังก์ชัน คือ c language และ c plus+ language ในส่วนของ setup จะทำการ run ครั้งเดียว โดยจะเซท Serial Port ที่ความเร็ว 115200  ส่วน loop จะเพิ่มตัวแปร cnt ขึ้นเรื่อยๆ โดยจะแสดงตัวแปร cnt และจะหน่วงเวลา 1 วินาที ในแต่ละโปรแกรมเมื่อใช้ platfomio จะมี configuration file ชื่อว่า vi platfomio.ini สามารถบอกถึงข้อมูลเกี่ยวกับ platform ได้ และเมื่อทำการดาวน์โหลดข้อมูลสำเร็จ และทำการrunโปรแกรม จะเห็นได้ว่าตัวแปรเคาท์ทำการนับเพิ่มทีละ1 ไปเรื่อย จากน้อยไปมาก และจะแสดงผลทุกๆ 1 วินาที เมื่อกดปุ่มรีเซทโปรแกรมจะเริ่มนับ 1 ใหม่
 
 ## คำถามหลังการทดลอง
 
