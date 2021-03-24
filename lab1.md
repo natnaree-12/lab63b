@@ -33,6 +33,7 @@
   * จากนั้นไปที่ตัวอย่างที่ 1 
     * พิมพ์ cd 01_Serial Monitor 
     * พิมพ์ vi src/main.cpp
+    
     ![image](https://user-images.githubusercontent.com/80879788/112310657-6aa53000-8cd7-11eb-8d70-da7305c4f50d.png)
 
 
