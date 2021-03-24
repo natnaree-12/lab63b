@@ -15,7 +15,7 @@
 4.Commuter
 
 ## ศึกษาข้อมูลเบื้องต้น
-* https://www.youtube.com/watch?v=CCnN1WJsXQY&ab_channel=TANI-IOT
+* https://www.youtube.com/watch?v=VX-QNQcO-b4&ab_channel=TANI-IOT
 
 ## วิธีการทำการทดลอง
 1.ต่อสาย USB เข้า Serial Port Compuuter 
