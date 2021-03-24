@@ -11,9 +11,9 @@
 
 3.Serial Port Compuuter
 
-4.Commuter
+4.Computer
 
-5.adapter
+5.Adapter
 
 ## ศึกษาข้อมูลเบื้องต้น
 * https://www.youtube.com/watch?v=CCnN1WJsXQY&ab_channel=TANI-IOT
