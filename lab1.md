@@ -20,6 +20,8 @@
 1.ต่อสาย USB เข้า Serial Port Compuuter 
 
 2.เสียบ microcontroller ESP01 ลงบน Serial Port Compuuter
+![image](https://user-images.githubusercontent.com/80879788/112308105-59a6ef80-8cd4-11eb-9aeb-7d8970c127ca.png)
+
 
 3.เขียนโปรแกรม ดูตัวอย่างโปรแกรม ที่โฟรเดอร์ pattani
   
