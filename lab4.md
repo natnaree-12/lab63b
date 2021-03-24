@@ -12,9 +12,9 @@
 
 3.Serial Port Compuuter
 
-4.Commuter
+4.Computer
 
-5.adapter
+5.Adapter
 
 6.เซนเซอร์ตรวจจับแสง
 
