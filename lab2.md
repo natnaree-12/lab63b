@@ -12,7 +12,7 @@
 
 3.Serial Port Compuuter
 
-4.Commuter
+4.Computer
 
 ## ศึกษาข้อมูลเบื้องต้น
 * https://www.youtube.com/watch?v=yBjab0UNuB8&ab_channel=TANI-IOT
