@@ -35,9 +35,34 @@
     * พิมพ์ vi src/main.cpp
     
     ![image](https://user-images.githubusercontent.com/80879788/112310657-6aa53000-8cd7-11eb-8d70-da7305c4f50d.png)
+    
+4.แสดงโปรแกรมทดสอบ 15 บรรทัด มี 2 ส่วน คือ ส่วนของ setup กับ loop
 
+![image](https://user-images.githubusercontent.com/80879788/112311363-341be500-8cd8-11eb-9818-4add5548f275.png)
+
+5.พิมพ์ vi po\latformio.ini เพื่อเ็นการตวจสอบข้อมูลของ platform
+
+![image](https://user-images.githubusercontent.com/80879788/112312032-ece22400-8cd8-11eb-9b5a-df2ae9d06a45.png)
+
+6. ทำการอัปโหลดโปรแกรม 01_Serial Monitor
+  * พิมพ์ pio run -t upload กด Enter
+  * ขณะที่ run เพิ่อให้ microcontroller รับข้อมูลใหม่เข้าไป ให้กดปุ่มดังรูป
+  
+  ![image](https://user-images.githubusercontent.com/80879788/112314503-af32ca80-8cdb-11eb-93fa-6a50fb3912f6.png)
+
+7.เมื่อโปรแกรมทำการดาวน์โหลดเสร็จแล้ว
+  * พิมพ์ pio device monitor กด Enter เพื่อดูผลลัพธ์จากคอมพิวเตอร์
+  
+  ![image](https://user-images.githubusercontent.com/80879788/112315226-819a5100-8cdc-11eb-8a41-3af280eb40a4.png)
 
 ## การบันทึกผลการทดลอง
+ทำการทดลองแล้ว พบว่า เมื่อทำการพิมพ์ pio device monitor กด Enter เพื่อดูผลลัพธ์จากคอมพิวเตอร์ จะเห็นได้ว่าตัวแปรเคาท์ทำการนับเพิ่มทีละ1 ไปเรื่อย จากน้อยไปมาก และจะแสดงผลทุกๆ 1 วินาที 
+
+![image](https://user-images.githubusercontent.com/80879788/112316240-7dbafe80-8cdd-11eb-9863-59ed1356b1c7.png)
+
+เมื่อกดปุ่มรีเซทโปรแกรมจะเริ่มนับ 1 ใหม่
+
+![image](https://user-images.githubusercontent.com/80879788/112316743-f9b54680-8cdd-11eb-88cb-b0add704c60c.png)
 
 ## อภิปรายผลการทดลอง
 
