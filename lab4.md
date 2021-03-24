@@ -38,6 +38,7 @@
 
 ![image](https://user-images.githubusercontent.com/80879788/112368879-22edcb00-8d0e-11eb-8580-1d16942bf7b7.png)
 
+4.อัปโหลดโปรแกรมเข้าสู่ microcontroller
   * พิมพ์ pio run -t upload กด Enter
   * ขณะที่ run เพื่อให้ microcontroller รับข้อมูลใหม่เข้าไป ให้กดปุ่มดังรูป
   
