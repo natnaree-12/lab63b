@@ -39,18 +39,12 @@
 4.อัปโหลดโปรแกรมเข้าสู่ microcontroller
   * พิมพ์ pio run -t upload กด Enter
   * ขณะที่ run เพื่อให้ microcontroller รับข้อมูลใหม่เข้าไป ให้กดปุ่มดังรูป
-  
-![image](https://user-images.githubusercontent.com/80879788/112314503-af32ca80-8cdb-11eb-93fa-6a50fb3912f6.png)  
+
+![image](https://user-images.githubusercontent.com/80879788/112379750-1e7bdf00-8d1b-11eb-84c6-0128585dde14.png)
+
+5.เปิดเว็บบราวเซอร์
 5.เมื่อโปรแกรมทำการดาวน์โหลดเสร็จแล้ว
   * พิมพ์ pio device monitor กด Enter เพื่อดูผลลัพธ์จากคอมพิวเตอร์
-
-6.จากนั้นต่อเซนเซอร์ตรวจจับแสง ดังรูป
-
-![image](https://user-images.githubusercontent.com/80879788/112372079-e8862d00-8d11-11eb-9ade-6c8f9703f542.png)
-
-7.ต่อสายไฟสีขาวที่จุดที่นิ้วชี้อยู่ และสังเกตผล จากนั้นนำนิ้วมาบังเซนเซอร์ตรวจจับแสง และสังเกตผล
-
-![image](https://user-images.githubusercontent.com/80879788/112372466-677b6580-8d12-11eb-84f8-9f6c075dfe84.png)
 
 ## การบันทึกผลการทดลอง
 * เมื่อทำการพิมพ์ pio device monitor กด Enter เพื่อดูผลลัพธ์จากคอมพิวเตอร์ จะเห็นได้ว่าโปรแกรมจะขึ้น read 1 เมื่อไม่ได้จิ้มสายไฟสีขาว แต่ถ้านำไปจิ้มในช่องที่สายไฟสีแดง สีดำและสีเหลืองตัวโปรแกรมก็จะขึ้น read 0 
