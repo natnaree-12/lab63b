@@ -7,15 +7,20 @@
 
 ## อุปกรณ์ที่ใช้ 
 1.microcontroller ESP01
+
 2.USB
+
 3.Serial Port Compuuter
+
 4.Commuter
 
 ## ศึกษาข้อมูลเบื้องต้น
 
 ## วิธีการทำการทดลอง
 1.ต่อสาย USB เข้า Serial Port Compuuter 
+
 2.เสียบ microcontroller ESP01 ลงบน Serial Port Compuuter
+
 3.เขียนโปรแกรม ดูตัวอย่างโปรแกรม ที่โฟรเดอร์ pattani
  * 
 
