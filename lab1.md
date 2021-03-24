@@ -32,16 +32,16 @@
   
   * พิมพ์ cd pattani เพื่อไปที่โฟลเดอร์ ซึ่งมีโปรแกรมตัวอย่าง 9 โปรแกรม
   * จากนั้นไปที่ตัวอย่างที่ 1 
-    * พิมพ์ cd 01_Serial Monitor 
-    * พิมพ์ vi src/main.cpp
+    * พิมพ์ cd 01_Serial Monitor กดEnter
+    * พิมพ์ vi src/main.cpp กดEnter
     
 ![image](https://user-images.githubusercontent.com/80879788/112310657-6aa53000-8cd7-11eb-8d70-da7305c4f50d.png)
     
-4.แสดงโปรแกรมทดสอบ 15 บรรทัด มี 2 ส่วน คือ ส่วนของ setup กับ loop
+4.แสดงโปรแกรมทดสอบ 15 บรรทัด 
 
 ![image](https://user-images.githubusercontent.com/80879788/112311363-341be500-8cd8-11eb-9818-4add5548f275.png)
 
-5.พิมพ์ vi po\latformio.ini เพื่อเ็นการตวจสอบข้อมูลของ platform
+5.พิมพ์ vi po\latformio.ini เพื่อเป็นการตรวจสอบข้อมูลของ platform
 
 ![image](https://user-images.githubusercontent.com/80879788/112312032-ece22400-8cd8-11eb-9b5a-df2ae9d06a45.png)
 
