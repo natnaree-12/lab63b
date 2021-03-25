@@ -10,7 +10,7 @@
 
 2.USB
 
-3.Serial Port Compuuter
+3.Serial Port Computer
 
 4.Computer
 
@@ -18,12 +18,12 @@
 * https://www.youtube.com/watch?v=VX-QNQcO-b4&ab_channel=TANI-IOT
 
 ## วิธีการทำการทดลอง
-1.ต่อสาย USB เข้า Serial Port Compuuter 
+1.ต่อสาย USB เข้า Serial Port
 
 ![image](https://user-images.githubusercontent.com/80879788/112309445-e9996900-8cd5-11eb-8f4c-da72cbde1663.png)
 
 
-2.เสียบ microcontroller ESP01 ลงบน Serial Port Compuuter
+2.เสียบ microcontroller ESP01 ลงบน Serial Port
 
 ![image](https://user-images.githubusercontent.com/80879788/112309332-cd95c780-8cd5-11eb-91ec-f39c35bd417c.png)
 
@@ -32,7 +32,7 @@
 
 ![image](https://user-images.githubusercontent.com/80879788/112382349-5173a200-8d1e-11eb-80a3-6351907f6122.png)
 
-ซึ่งจำเป็นต้องตั้งชื่อไวไฟ และรหัสผ่าน จากนั้นต้องกำหนด IPAddress เพื่อปล่อยไวไฟให้คนอื่นมาเชื่อมต่อได้ เปิด serverที่ port 80 เริ่มจากการเปลี่ยนเว็บเซิร์ฟเวอร์ไว้ 1 ตัว แล้วสร้าง AP ด้วยคำสั่ง WiFi.softAP(ssid, password) และบอก ip ว่าเป็นเท่าไร
+ในตัวโปรแกรมจำเป็นต้องตั้งชื่อไวไฟ และรหัสผ่าน จากนั้นต้องกำหนด IPAddress เพื่อปล่อยไวไฟให้คนอื่นมาเชื่อมต่อได้ เปิด serverที่ port 80 เริ่มจากการเปลี่ยนเว็บเซิร์ฟเวอร์ไว้ 1 ตัว แล้วสร้าง AP ด้วยคำสั่ง WiFi.softAP(ssid, password) และบอก ip ว่าเป็นเท่าไร
 
 4.อัปโหลดโปรแกรมเข้าสู่ microcontroller
   * พิมพ์ pio run -t upload กด Enter
