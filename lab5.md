@@ -10,7 +10,7 @@
 
 2.USB
 
-3.Serial Port Compuuter
+3.Serial Port Computer
 
 4.Computer
 
@@ -18,12 +18,12 @@
 * https://www.youtube.com/watch?v=VX-QNQcO-b4&ab_channel=TANI-IOT
 
 ## วิธีการทำการทดลอง
-1.ต่อสาย USB เข้า Serial Port Compuuter 
+1.ต่อสาย USB เข้า Serial Port
 
 ![image](https://user-images.githubusercontent.com/80879788/112309445-e9996900-8cd5-11eb-8f4c-da72cbde1663.png)
 
 
-2.เสียบ microcontroller ESP01 ลงบน Serial Port Compuuter
+2.เสียบ microcontroller ESP01 ลงบน Serial Port 
 
 ![image](https://user-images.githubusercontent.com/80879788/112309332-cd95c780-8cd5-11eb-91ec-f39c35bd417c.png)
 
@@ -36,7 +36,7 @@
 
 ![image](https://user-images.githubusercontent.com/80879788/112378477-91845600-8d19-11eb-83fe-0e5a5195534f.png)
 
-เนื่องจากตัวโปรแกรมต้องับไวไฟ จึงต้องใสชื่อไวไฟและรหัสผ่านลงไป ส่วนของโปรปกรมมี 2 ส่วน ส่วนของsetup ใช้เชื่อมต่อไวไฟที่ได้ทำการเลือกเอาไว้ และตั้งค่าตัวเว็บเซิฟร์เวอร์ ถ้ามีการเชื่อมต่อก็จะแสดงผล Hello cnt ส่วนที่2 คือ loop 
+เนื่องจากตัวโปรแกรมต้องรับไวไฟ จึงต้องใสชื่อไวไฟและรหัสผ่านลงไป ส่วนของโปรแกรมมี 2 ส่วน ส่วนของsetup ใช้เชื่อมต่อไวไฟที่ได้ทำการเลือกเอาไว้ และตั้งค่าตัวเว็บเซิฟร์เวอร์ ถ้ามีการเชื่อมต่อก็จะแสดงผล Hello cnt ส่วนที่2 คือ loop 
 
 4.อัปโหลดโปรแกรมเข้าสู่ microcontroller
   * พิมพ์ pio run -t upload กด Enter
