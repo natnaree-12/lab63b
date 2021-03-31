@@ -1,10 +1,13 @@
 # การทดลองที่ 7 เรื่อง รดน้ำต้นไม้ด้วยสมาร์ทโฟน
 
 ## วัตถุประสงค์ 
+
 1.ศึกษาลักษณะวงจรที่นำมาต่อเพื่อสั่งการการรดต้นไม่
+
 2.ศึกษาการเขียนโปรแกรมเพื่อใช้ในการสั่งการรดน้ำต้นไม้
 
 ## อุปกรณ์ที่ใช้ 
+
 1.microcontroller ESP 32
 
 ![image](https://user-images.githubusercontent.com/80879788/113187378-fcd2a880-9282-11eb-9cc0-1f71daa305b7.png)
@@ -48,9 +51,20 @@
 ![image](https://user-images.githubusercontent.com/80879788/113188499-5091c180-9284-11eb-95f9-5f6e12d5fd27.png)
 
 
-## ศึกษาข้อมูลเบื้องต้น (แหล่งข้อมูลเพื่อการศึกษา)
+## ศึกษาข้อมูลเบื้องต้น 
 
-## วิธีการทำการทดลอง (ทำเป็นขั้นตอนพร้อมภาพประกอบ)
+* http://www.lungmaker.com/%E0%B8%A7%E0%B8%B4%E0%B8%98%E0%B8%B5%E0%B9%83%E0%B8%8A%E0%B9%89-esp8266-esp-01-wifi/
+
+* https://www.youtube.com/watch?v=uSKZbOIMiqw&ab_channel=SaranairChannel
+
+* https://www.youtube.com/watch?v=Ik5TBPh3_Os&ab_channel=SaranairChannel
+
+## วิธีการทำการทดลอง
+
+1. ทำการต่อวงจรดังรูป
+
+![image](https://user-images.githubusercontent.com/80879788/113190676-ca2aaf00-9286-11eb-8aa9-6adf1539653c.png)
+
 
 ## การบันทึกผลการทดลอง (พร้อมตัวอย่าง)
 
