@@ -65,6 +65,46 @@
 
 ![image](https://user-images.githubusercontent.com/80879788/113190676-ca2aaf00-9286-11eb-8aa9-6adf1539653c.png)
 
+2.อัพโหลดโค้ดใส่ ESP 32
+
+* ลงโปรแกรม
+* อัพโหลดโค้ด
+
+![image](https://user-images.githubusercontent.com/80879788/113195974-21338280-928d-11eb-9b3f-f1d8b9447b25.png)
+
+![image](https://user-images.githubusercontent.com/80879788/113196286-838c8300-928d-11eb-8466-6c54cb1a7ce0.png)
+
+3.ทดสอบการทำงาน
+
+* ใช้ สมาร์ทโฟน ไปที่การตั้งค่า Wi-Fi
+
+![image](https://user-images.githubusercontent.com/80879788/113198037-a0c25100-928f-11eb-99db-2d8958c71fdb.png)
+
+* เลือกเครือข่าย Wi-Fi เป็น ENG_12
+
+![image](https://user-images.githubusercontent.com/80879788/113198160-c8b1b480-928f-11eb-9f23-b7cfe517a498.png)
+
+* ใส่รหัสผ่านเครือข่าย = 12345678 จากนั้นกดเชื่อมต่อ
+
+![image](https://user-images.githubusercontent.com/80879788/113198244-e717b000-928f-11eb-90cc-598399380201.png)
+
+* แสดงการเชื่อมต่อเครือข่าย Wi-Fi เป็น ENG_12
+
+![image](https://user-images.githubusercontent.com/80879788/113198503-3231c300-9290-11eb-92d1-c8123d9f9120.png)
+
+* เปิดเว็บบราวเซอร์ ที่ URL ป้อนไอพี : 192.168.1.1
+
+  * ยังไม่ได้กดเปิด 
+  
+![image](https://user-images.githubusercontent.com/80879788/113199179-0531e000-9291-11eb-9810-765cd8049e6d.png)
+
+  ตัวสปริงเกอร์ไม่จ่ายน้ำ
+
+  * กดเปิดแล้ว
+
+![image](https://user-images.githubusercontent.com/80879788/113199221-11b63880-9291-11eb-9852-903d10ecf8aa.png)
+
+  ตัวสปริงเกอร์จ่ายน้ำ
 
 ## การบันทึกผลการทดลอง (พร้อมตัวอย่าง)
 
