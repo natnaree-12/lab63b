@@ -61,23 +61,151 @@
 
 ## วิธีการทำการทดลอง
 
-1. ทำการต่อวงจรดังรูป
+### 1. ทำการต่อวงจรดังรูป
 
 ![image](https://user-images.githubusercontent.com/80879788/113190676-ca2aaf00-9286-11eb-8aa9-6adf1539653c.png)
 
+ต่อ Relay กับปุ่มข้างหน้ากล่อง
+
 ![image](https://user-images.githubusercontent.com/80879788/113274378-d4d95880-9307-11eb-8934-fa849d851cd5.png)
 
-
-2.อัพโหลดโค้ดใส่ ESP 32
+### 2.อัพโหลดโค้ดใส่ ESP 32
 
 * ลงโปรแกรม
+เรียกใช้งานไลบรารี ESP8266WiFi.h ไลบรารีนี้มีวิธีการใช้งาน WiFi ของ ESP8266 เพื่อเชื่อมต่อกับเครือข่าย หลังจากนั้นเรายังเรียกใช้ไลบรารี ESP8266WebServer.h ซึ่งมีวิธีการที่จะช่วยให้เราตั้งค่าเซิร์ฟเวอร์และจัดการคำขอ HTTP
+#include <ESP8266WiFi.h>
+#include <ESP8266WebServer.h>
+
+เนื่องจากเรากำลังตั้งค่า ESP8266 ESP-01 ใช้งานในโหมด (AP) ซึ่งจะสร้างเครือข่าย WiFi ดังนั้นเราต้องตั้งค่า SSID, รหัสผ่าน, ที่อยู่ IP, IP ซับเน็ตมาสก์และ IP เกตเวย์
+
+/* Put your SSID & Password */
+const char* ssid = "ENG_12";  // Enter SSID here
+const char* password = "12345678";  //Enter Password here
+
+/* Put IP Address details */
+
+IPAddress local_ip(192, 168, 1, 1);
+IPAddress gateway(192, 168, 1, 1);
+IPAddress subnet(255, 255, 255, 0);
+
+ต่อไปเราจะประกาศ object ของไลบรารี ESP8266WebServer เพื่อให้เราสามารถเข้าถึงฟังก์ชั่นของมัน ตัวสร้างของวัตถุนี้ใช้พอร์ตเป็นพารามิเตอร์ เนื่องจาก 80 เป็นพอร์ตเริ่มต้นสำหรับ HTTP เราจะใช้ค่านี้ ตอนนี้คุณสามารถเข้าถึงเซิร์ฟเวอร์โดยไม่จำเป็นต้องระบุพอร์ตใน URL
+
+ESP8266WebServer server(80);
+
+uint8_t Generator pin = 0;
+bool Generator status = LOW;
+
+uint8_t Generator pin = 2;
+bool Generator status = LOW;
+
+void setup() {
+  Serial.begin(115200);
+  pinMode (Generator, OUTPUT)
+
+  WiFi.softAP(ssid, password);
+  WiFi.softAPConfig(local_ip, gateway, subnet);
+  delay(100);
+
+  server.on("/", handle_OnConnect);
+  server.on("/Generatoron", handle_led1on);
+  server.on("/Generatoroff", handle_led1off); 
+ server.onNotFound(handle_NotFound);
+
+  server.begin();
+  Serial.println("HTTP server started");
+}
+
+void loop() {
+  server.handleClient();
+  if (Generatorstatus)
+  {
+    digitalWrite(Generatorpin, HIGH);
+  }
+  else
+  {
+    digitalWrite(Generatorpin, LOW);
+  }
+  
+void handle_OnConnect() {
+  LED1status = LOW;
+  Serial.println("GPIO7 Status: OFF ");
+  server.send(200, "text/html", SendHTML(Generatorstatus));
+}
+
+void handle_led1on() {
+  Generatorstatus = HIGH;
+  Serial.println("GPIO7 Status: ON");
+  server.send(200, "text/html", SendHTML(true));
+}
+
+void handle_led1off() {
+  Generatorstatus = LOW;
+  Serial.println("GPIO7 Status: OFF");
+  server.send(200, "text/html", SendHTML(false));
+}
+
+void handle_NotFound() {
+  server.send(404, "text/plain", "Not found");
+}
+
+ฟังก์ชัน SendHTML () มีหน้าที่สร้างหน้าเว็บทุกครั้งที่เว็บเซิร์ฟเวอร์ ESP8266 ได้รับคำขอจากเว็บไคลเอ็นต์ มันเป็นการรวมโค้ด HTML เข้ากับสตริงขนาดใหญ่และกลับไปยังฟังก์ชัน server.send () ที่เรากล่าวถึงก่อนหน้านี้ ฟังก์ชั่นรับสถานะ LED เป็นพารามิเตอร์ในการสร้างเนื้อหา HTML แบบไดนามิก
+ข้อความแรกที่คุณควรส่งคือการประกาศ < ! DOCTYPE > ที่ระบุว่าเรากำลังส่งรหัส HTML
+String SendHTML(uint8_t led1stat, uint8_t led2stat) {
+  String ptr = "<!DOCTYPE html> <html>\n";
+ถัดไปคือ < meta > ที่ทำให้หน้าเว็บตอบสนองในเว็บเบราว์เซอร์ใด ๆ ในขณะที่แท็ก < title > จะตั้งชื่อของหน้า
+
+  ptr += "<head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, user-scalable=no\">\n";
+  ptr += "<title> Control</title>\n";
+  
+จัดแต่งหน้าเว็บ
+
+ต่อไปเรามี CSS เพื่อกำหนดลักษณะปุ่มและลักษณะที่ปรากฏของหน้าเว็บ เราเลือกแบบอักษร Helvetica กำหนดเนื้อหาที่จะแสดงเป็นบล็อกอินไลน์และจัดตำแหน่งที่กึ่งกลาง
+
+ptr += "<style>html { font-family: Helvetica; display: inline-block; margin: 0px auto; text-align: center;}\n";
+โค้ดต่อไปนี้จะตั้งค่าสีแบบอักษรและระยะขอบรอบ ๆ ตัวแท็ก H1, H3 และ p
+
+  ptr += "body{margin-top: 50px;} h1 {color: #444444;margin: 50px auto 30px;} h3 {color: #444444;margin-bottom: 50px;}\n";
+  ptr += ".button {display: block;width: 80px;background-color: #1abc9c;border: none;color: white;padding: 13px 30px;text-decoration: none;font-size: 25px;margin: 0px auto 35px;cursor: pointer;border-radius: 4px;}\n";
+  ptr += ".button-on {background-color: #1abc9c;}\n";
+  ptr += ".button-on:active {background-color: #16a085;}\n";
+  ptr += ".button-off {background-color: #34495e;}\n";
+  ptr += ".button-off:active {background-color: #2c3e50;}\n";
+สไตล์บางอย่างถูกนำไปใช้กับปุ่มเช่นเดียวกับคุณสมบัติเช่นสี, ขนาด, ระยะขอบ ฯลฯ ปุ่มเปิดและปิดมีสีพื้นหลังที่แตกต่างกันในขณะที่: ตัวเลือกที่ใช้งานสำหรับปุ่มให้แน่ใจว่าผลการคลิกปุ่ม
+ ptr += "p {font-size: 14px;color: #888;margin-bottom: 10px;}\n";
+  ptr += "</style>\n";
+  ptr += "</head>\n";
+  ptr += "<body>\n";
+
+การตั้งค่าหัวเรื่องของเว็บเพจ
+ถัดไปตั้งค่าหัวเรื่องของหน้าเว็บ คุณสามารถเปลี่ยนข้อความนี้เป็นสิ่งที่เหมาะกับแอปพลิเคชันของคุณ
+
+  ptr += "<h1>ENG_12 Web Server</h1>\n";
+  ptr += "<h3>Using Access Point(AP) Mode</h3>\n";
+
+การแสดงปุ่มและสถานะที่เกี่ยวข้อง
+ในการสร้างปุ่มและสถานะ LED แบบไดนามิกเราจะใช้คำสั่ง if ดังนั้นขึ้นอยู่กับสถานะของพิน GPIO ปุ่ม เปิด/ปิด จะปรากฏขึ้น
+
+  if Generatorstat)
+  {
+    ptr += "<p> Generator Status: ON</p><a class=\"button button-off\" href=\"/ Generatoroff\">OFF</a>\n";
+  }
+  else
+  {
+    ptr += "<p> Generator Status: OFF</p><a class=\"button button-on\" href=\"/ Generator
+on\">ON</a>\n";
+  }
+  ptr += "</body>\n";
+  ptr += "</html>\n";
+  return ptr;
+}
+
 * อัพโหลดโค้ด
 
 ![image](https://user-images.githubusercontent.com/80879788/113195974-21338280-928d-11eb-9b3f-f1d8b9447b25.png)
 
 ![image](https://user-images.githubusercontent.com/80879788/113196286-838c8300-928d-11eb-8466-6c54cb1a7ce0.png)
 
-3.ทดสอบการทำงาน
+### 3.ทดสอบการทำงาน
 
 * ใช้ สมาร์ทโฟน ไปที่การตั้งค่า Wi-Fi
 
