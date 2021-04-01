@@ -90,12 +90,13 @@
 ESP32WebServer server(80);
 
       uint8_t Generator pin = 0;
-* ทำารประกาศขาของ ESP32 ที่มีการเชื่อมต่ออยู่และสถานะเริ่มต้น
-bool Generator status = LOW;
+* ทำการประกาศขาของ ESP32 ที่มีการเชื่อมต่ออยู่และสถานะเริ่มต้น
+     
+      bool Generator status = LOW;
 
-     uint8_t Generator pin = 2;
+      uint8_t Generator pin = 2;
 
-     bool Generator status = LOW;
+      bool Generator status = LOW;
 
 #### ฟังก์ชั่น Setup 
 
