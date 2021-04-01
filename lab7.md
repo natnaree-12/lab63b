@@ -66,193 +66,207 @@
 
 ### 2.อัพโหลดโค้ดใส่ ESP 32
 
-* ลงโปรแกรม
+##### ลงโปรแกรม
 
-  * เรียกใช้งานไลบรารี ESP32WiFi.h ไลบรารีนี้มีวิธีการใช้งาน WiFi ของ ESP32 เพื่อเชื่อมต่อกับเครือข่าย หลังจากนั้นเรายังเรียกใช้ไลบรารี ESP32WebServer.h ซึ่งมีวิธีการที่จะช่วยให้เราตั้งค่าเซิร์ฟเวอร์และจัดการคำขอ HTTP
+* เรียกใช้งานไลบรารี ESP32WiFi.h เพื่อเชื่อมต่อกับเครือข่าย WiFi ของ ESP32  หลังจากนั้นเรายังเรียกใช้ไลบรารี ESP32WebServer.h เพื่อช่วยให้เราตั้งค่าเซิร์ฟเวอร์และจัดการคำขอ HTTP
 
-#include <ESP32WiFi.h>
+      #include <ESP32WiFi.h>
 
-#include <ESP32WebServer.h>
+      #include <ESP32WebServer.h>
 
-  * เนื่องจากเรากำลังตั้งค่า ESP32 ใช้งานในโหมด (AP) ซึ่งจะสร้างเครือข่าย WiFi ดังนั้นเราต้องตั้งค่า SSID, รหัสผ่าน, ที่อยู่ IP, IP ซับเน็ตมาสก์และ IP เกตเวย์
+* เนื่องจากเรากำลังตั้งค่า ESP32 ใช้งานในโหมด(AP)เพื่อสร้างเครือข่าย WiFi ดังนั้นเราต้องตั้งค่า SSID, รหัสผ่าน, ที่อยู่ IP, IP ซับเน็ตมาสก์และ IP เกตเวย์
 
-const char* ssid = "ENG_12";  // Enter SSID here
+      const char* ssid = "ENG_12";  // Enter SSID here
 
-const char* password = "12345678";  //Enter Password here
+      const char* password = "12345678";  //Enter Password here
 
-IPAddress local_ip(192, 168, 1, 1);
+      IPAddress local_ip(192, 168, 1, 1);
 
-IPAddress gateway(192, 168, 1, 1);
+      IPAddress gateway(192, 168, 1, 1);
 
-IPAddress subnet(255, 255, 255, 0);
+      IPAddress subnet(255, 255, 255, 0);
 
-  * ต่อไปเราจะประกาศ object ของไลบรารี ESP32WebServer เพื่อให้เราสามารถเข้าถึงฟังก์ชั่นของมัน ตัวสร้างของวัตถุนี้ใช้พอร์ตเป็นพารามิเตอร์ เนื่องจาก 80 เป็นพอร์ตเริ่มต้นสำหรับ HTTP เราจะใช้ค่านี้ ตอนนี้คุณสามารถเข้าถึงเซิร์ฟเวอร์โดยไม่จำเป็นต้องระบุพอร์ตใน URL
+* เรียก object ของไลบรารี ESP32WebServer เพื่อให้เราสามารถเข้าถึงฟังก์ชั่นของมัน ตัวสร้างของวัตถุนี้ใช้พอร์ตเป็นพารามิเตอร์ เนื่องจาก 80 เป็นพอร์ตเริ่มต้นสำหรับ HTTP เราจะใช้ค่านี้ 
+ESP32WebServer server(80);
 
-ESP8266WebServer server(80);
-
-uint8_t Generator pin = 0;
-
+      uint8_t Generator pin = 0;
+* ทำารประกาศขาของ ESP32 ที่มีการเชื่อมต่ออยู่และสถานะเริ่มต้น
 bool Generator status = LOW;
 
-uint8_t Generator pin = 2;
+     uint8_t Generator pin = 2;
 
-bool Generator status = LOW;
+     bool Generator status = LOW;
 
-void setup() {
+#### ฟังก์ชั่น Setup 
+
+* ตั้งค่าเวิร์ฟเวอร์และค่าของoutput จากนั้นเราตั้งค่าจุดเชื่อมต่อ Access Point (soft-AP) เพื่อสร้างเครือข่าย Wi-Fi โดยการตรวจสอบ SSID, รหัสผ่าน, ที่อยู่ IP, IP ซับเน็ตมาสก์และ IP เกตเวย์ เพื่อจำกัดการเข้า HTTP จำเป็นต้องระบุรหัสที่จะดำเนินการเมื่อมีการเข้าชม URL หากผู้ใช้งานร้องขอ URL อื่นใดนอกเหนือจากที่ระบุไว้ใน server.on จะแสดงข้อมูลว่า server.onNotFound 
+
+      void setup() 
+      
+      {
   
-  Serial.begin(115200);
+        Serial.begin(115200);
  
-  pinMode (Generator, OUTPUT)
+        pinMode (Generator, OUTPUT)
 
-  WiFi.softAP(ssid, password);
+        WiFi.softAP(ssid, password);
   
-  WiFi.softAPConfig(local_ip, gateway, subnet);
+        WiFi.softAPConfig(local_ip, gateway, subnet);
   
-  delay(100);
+        delay(100);
 
-  server.on("/", handle_OnConnect);
+        server.on("/", handle_OnConnect);
   
-  server.on("/Generatoron", handle_led1on);
+        server.on("/Generatoron", handle_led1on);
   
-  server.on("/Generatoroff", handle_led1off); 
+        server.on("/Generatoroff", handle_led1off); 
   
-  server.onNotFound(handle_NotFound);
+        server.onNotFound(handle_NotFound);
 
-  server.begin();
+* เริ่มต้นเรียกการใช้งานของเซิร์เวอร์
+          
+        server.begin();
   
-  Serial.println("HTTP server started");
-}
+        Serial.println("HTTP server started");
+      }
 
-void loop() {
+#### ฟังก์ชัน Loop 
+
+* เรียก object ของไลบรารี ESP32WebServer แล้วป้อนสถานะ Generator status ในLoop นี้
+
+     void loop() {
   
-  server.handleClient();
+        server.handleClient();
   
-  if (Generatorstatus)
+        if (Generatorstatus)
   
-  {
+     {
     
-    digitalWrite(Generatorpin, HIGH);
+        digitalWrite(Generatorpin, HIGH);
   
-  }
+     }
   
-  else
+    else
   
-  {
+    {
    
-   digitalWrite(Generatorpin, LOW);
+       digitalWrite(Generatorpin, LOW);
   
-  }
-  
-void handle_OnConnect() {
-  
-  LED1status = LOW;
-  
-  Serial.println("GPIO7 Status: OFF ");
-  
-  server.send(200, "text/html", SendHTML(Generatorstatus));
-}
-
-void handle_led1on() {
-  
-  Generatorstatus = HIGH;
-  
-  Serial.println("GPIO7 Status: ON");
-  
-  server.send(200, "text/html", SendHTML(true));
-}
-
-void handle_led1off() {
+    }
  
-  Generatorstatus = LOW;
-  
-  Serial.println("GPIO7 Status: OFF");
-  
-  server.send(200, "text/html", SendHTML(false));
+* ต่อไปสร้างฟังก์ชั่นที่เราแนบไปกับรูท (/) URL ด้วยเซิร์ฟเวอร์ เพื่อตอบสนองต่อ HTTP ซึ่งในที่นี้เรากำลังส่งรหัส 200 (รหัสสถานะ HTTP) ซึ่งสอดคล้องกับการตอบสนอง จากนั้นเราระบุประเภทเนื้อหาเป็น“ text / html“  ฟังก์ชั่นที่กำหนดเองซึ่งสร้างหน้า HTML แบบไดนามิกที่มีสถานะของการเปิด-ปิดน้ำ
 
-}
+      void handle_OnConnect() 
+      
+      {
+  
+        Generator status = LOW;
+  
+        Serial.println("Generator Status: OFF ");
+  
+        server.send(200, "text/html", SendHTML(Generatorstatus));
+      }
 
-void handle_NotFound()
+* ในทำนองเดียวกันเพื่อจัดการคำขอเปิด-ปิด น้ำ และหน้าข้อผิดพลาด 404
 
-{
+       void handle_ Generatoron() 
+       
+       {
   
-  server.send(404, "text/plain", "Not found");
+          Generatorstatus = HIGH;
+  
+          Serial.println(" Generator Status: ON");
+  
+          server.send(200, "text/html", SendHTML(true));
+      }
 
-}
+       void handle_ Generatoroff() 
+       
+       {
+ 
+          Generatorstatus = LOW;
+  
+          Serial.println(" Generator Status: OFF");
+  
+          server.send(200, "text/html", SendHTML(false));
 
-ฟังก์ชัน SendHTML () มีหน้าที่สร้างหน้าเว็บทุกครั้งที่เว็บเซิร์ฟเวอร์ ESP8266 ได้รับคำขอจากเว็บไคลเอ็นต์ มันเป็นการรวมโค้ด HTML เข้ากับสตริงขนาดใหญ่และกลับไปยังฟังก์ชัน server.send () ที่เรากล่าวถึงก่อนหน้านี้ ฟังก์ชั่นรับสถานะ LED เป็นพารามิเตอร์ในการสร้างเนื้อหา HTML แบบไดนามิก
-ข้อความแรกที่คุณควรส่งคือการประกาศ < ! DOCTYPE > ที่ระบุว่าเรากำลังส่งรหัส HTML
+       }
 
-String SendHTML(uint8_t led1stat, uint8_t led2stat) 
+       void handle_NotFound()
 
-{
+       {
+  
+          server.send(404, "text/plain", "Not found");
 
-String ptr = "<!DOCTYPE html> <html>\n";
+       }
 
-ถัดไปคือ < meta > ที่ทำให้หน้าเว็บตอบสนองในเว็บเบราว์เซอร์ใด ๆ ในขณะที่แท็ก < title > จะตั้งชื่อของหน้า
+#### การแสดงเว็บเพจ HTML
 
-  ptr += "<head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, user-scalable=no\">\n";
-  
-  ptr += "<title> Control</title>\n";
-  
-  ptr += "<style>html { font-family: Helvetica; display: inline-block; margin: 0px auto; text-align: center;}\n";
+* ฟังก์ชัน SendHTML () มีหน้าที่สร้างหน้าเว็บทุกครั้งที่เว็บเซิร์ฟเวอร์ เมื่อได้รับคำขอจากโค้ดในฟังก์ชัน loop คือ ฟังก์การรับสถานะการเปิด-ปิดน้ำ เป็นพารามิเตอร์ในการสร้างเนื้อหา HTML แบบไดนามิก บรรทัดแรกเป็นการระบุว่าเรากำลังส่งรหัส HTML คือ < ! DOCTYPE >
 
-โค้ดต่อไปนี้จะตั้งค่าสีแบบอักษรและระยะขอบรอบ ๆ ตัวแท็ก H1, H3 และ p
+      String SendHTML(uint8_t Generatorstat) 
 
-   ptr += "body{margin-top: 50px;} h1 {color: #444444;margin: 50px auto 30px;} h3 {color: #444444;margin-bottom: 50px;}\n";
+      {
 
-   ptr += ".button {display: block;width: 80px;background-color: #1abc9c;border: none;color: white;padding: 13px 30px;text-decoration: none;font-size: 25px;margin: 0px 
+      String ptr = "<!DOCTYPE html> <html>\n";
 
-auto 35px;cursor: pointer;border-radius: 4px;}\n";
-  
-  ptr += ".button-on {background-color: #1abc9c;}\n";
-  
-  ptr += ".button-on:active {background-color: #16a085;}\n";
-  
-  ptr += ".button-off {background-color: #34495e;}\n";
-  
-  ptr += ".button-off:active {background-color: #2c3e50;}\n";
+* ถัดไปคือ < meta > ที่ทำให้หน้าเว็บตอบสนองในเว็บเบราว์เซอร์ใด ๆ ในขณะที่แท็ก < title > จะตั้งชื่อของหน้า
 
-สไตล์บางอย่างถูกนำไปใช้กับปุ่มเช่นเดียวกับคุณสมบัติเช่นสี, ขนาด, ระยะขอบ ฯลฯ ปุ่มเปิดและปิดมีสีพื้นหลังที่แตกต่างกันในขณะที่: ตัวเลือกที่ใช้งานสำหรับปุ่มให้แน่ใจว่าผลการคลิกปุ่ม
+       ptr += "<head><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0, user-scalable=no\">\n";
   
-  ptr += "p {font-size: 14px;color: #888;margin-bottom: 10px;}\n";
+       ptr += "<title> Control</title>\n";
   
-  ptr += "</style>\n";
-  
-  ptr += "</head>\n";
-  
-  ptr += "<body>\n";
+       ptr += "<style>html { font-family: Helvetica; display: inline-block; margin: 0px auto; text-align: center;}\n";
 
-ถัดไปตั้งค่าหัวเรื่องของหน้าเว็บ คุณสามารถเปลี่ยนข้อความนี้เป็นสิ่งที่เหมาะกับแอปพลิเคชันของคุณ
+* ต่อไปเป็นการตั้งค่าสีแบบอักษรและระยะขอบรอบ ๆ ในตัวเว็บเพจ
 
-  ptr += "<h1>ENG_12 Web Server</h1>\n";
-  
-  ptr += "<h3>Using Access Point(AP) Mode</h3>\n";
+       ptr += "body{margin-top: 50px;} h1 {color: #444444;margin: 50px auto 30px;} h3 {color: #444444;margin-bottom: 50px;}\n";
 
-ในการสร้างปุ่มและสถานะ LED แบบไดนามิกเราจะใช้คำสั่ง if ดังนั้นขึ้นอยู่กับสถานะของพิน GPIO ปุ่ม เปิด/ปิด จะปรากฏขึ้น
+       ptr += ".button {display: block;width: 80px;background-color: #1abc9c;border: none;color: white;padding: 13px 30px;text-decoration: none;font-size: 25px;margin: 0px 
 
-  if Generatorstat)
-  
-  {
-    
-    ptr += "<p> Generator Status: ON</p><a class=\"button button-off\" href=\"/ Generatoroff\">OFF</a>\n";
-  
-  }
-  
-  else
-  
-  {
-   
-   ptr += "<p> Generator Status: OFF</p><a class=\"button button-on\" href=\"/ Generatoron\">ON</a>\n";
-  
-  }
-  
-  ptr += "</body>\n";
-  
-  ptr += "</html>\n";
-  
-  return ptr;
+* การจัดแต่งหน้าเว็บ คือ กำหนดลักษณะปุ่มและลักษณะที่ปรากฏของหน้าเว็บ เลือกแบบอักษร กำหนดเนื้อหาที่จะแสดงเป็นบล็อกอินไลน์และจัดตำแหน่งที่กึ่งกลาง
 
-}
+      auto 35px;cursor: pointer;border-radius: 4px;}\n";
+  
+         ptr += ".button-on {background-color: #1abc9c;}\n";
+  
+         ptr += ".button-on:active {background-color: #16a085;}\n";
+  
+         ptr += ".button-off {background-color: #34495e;}\n";
+  
+         ptr += ".button-off:active {background-color: #2c3e50;}\n";
+
+         ptr += "p {font-size: 14px;color: #888;margin-bottom: 10px;}\n";
+  
+         ptr += "</style>\n";
+  
+         ptr += "</head>\n";
+  
+         ptr += "<body>\n";
+
+* ตั้งค่าหัวเรื่องของหน้าเว็บ เป็นการใส่ข้อความที่ต้องการแสดงบนหน้าเว็บเพจ
+
+         ptr += "<h1>ENG_12 Web Server</h1>\n";
+  
+         ptr += "<h3>Using Access Point(AP) Mode</h3>\n";
+
+* การแสดงปุ่มและสถานะที่เกี่ยวข้องบนหน้าเว็บเพจ
+
+      if Generatorstat)
+  
+         {ptr += "<p> Generator Status: ON</p><a class=\"button button-off\" href=\"/ Generatoroff\">OFF</a>\n";}
+  
+       else
+  
+         {ptr += "<p> Generator Status: OFF</p><a class=\"button button-on\" href=\"/ Generatoron\">ON</a>\n";}
+  
+       ptr += "</body>\n";
+  
+       ptr += "</html>\n";
+  
+       return ptr;
+
+      }
 
 * อัพโหลดโค้ด
 
