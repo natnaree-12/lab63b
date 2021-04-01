@@ -65,8 +65,7 @@
 
 ![image](https://user-images.githubusercontent.com/80879788/113190676-ca2aaf00-9286-11eb-8aa9-6adf1539653c.png)
 
-![image](https://user-images.githubusercontent.com/80879788/113273730-233a2780-9307-11eb-8dec-9d22eea9bf2f.png)
-![image](https://user-images.githubusercontent.com/80879788/113273776-2e8d5300-9307-11eb-9cd9-0137e4321011.png)
+![image](https://user-images.githubusercontent.com/80879788/113274378-d4d95880-9307-11eb-8934-fa849d851cd5.png)
 
 
 2.อัพโหลดโค้ดใส่ ESP 32
